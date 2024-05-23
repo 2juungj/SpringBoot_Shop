@@ -6,10 +6,11 @@
 <div class="container">
 	<h1 style="text-align: center;">상품 등록</h1>
 	<div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+		<!-- 사진 첨부 및 미리보기 -->
 		<form method="post" action="/upload" enctype="multipart/form-data">
 			<img id="imagePreview" src="#" alt=" 사진을 추가해주세요" style="max-width: 200px; max-height: 200px;">
 			<div>
-				<br> <input type="file" name="image" onchange="previewImage(event)"> <br>
+				<br> <input type="file"  id="itemimage" name="image" onchange="previewImage(event)" > <br>
 			</div>
 			<br> <input type="button" value="이미지 비우기" onclick="clearImage()">
 		</form>
@@ -35,6 +36,7 @@
 	</div>
 </div>
 
+<!-- 사진 첨부, 미리보기 동작 함수 -->
 <script type="text/javascript">
 	function previewImage(event) {
 		var reader = new FileReader();
@@ -53,6 +55,7 @@
 	}
 </script>
 
+<script src="/js/seller.js"></script>
 <%@ include file="../layout/footer.jsp"%>
 
 

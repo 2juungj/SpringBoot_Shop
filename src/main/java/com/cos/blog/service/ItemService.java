@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.blog.model.Item;
+import com.cos.blog.model.User;
 import com.cos.blog.repository.ItemRepository;
 
 @Service
@@ -16,7 +17,10 @@ public class ItemService {
 	private ItemRepository itemRepository;
 	
 	@Transactional
-	public void 상품등록(Item item) {
+	public void 상품등록(Item item, User user) {
+		item.setCount(0);
+		item.setUser(user);
+		item.setSoldout(false);
 		itemRepository.save(item);
 	}
 	
