@@ -4,19 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.cos.blog.config.auth.PrincipalDetail;
-import com.cos.blog.dto.ResponseDto;
-import com.cos.blog.model.Board;
 import com.cos.blog.model.Item;
 import com.cos.blog.service.ItemService;
 
@@ -49,31 +40,8 @@ public class ItemController {
 	
 	// 상품 상세 페이지 (GET)
 	@GetMapping("/item/{id}")
-	public String itemView(Model model, @PathVariable("id") int id) {
+	public String itemViewForm(Model model, @PathVariable("id") int id) {
 		model.addAttribute("item", itemService.상품불러오기(id));
 		return "item/detail";
 	}
-
-	// 상품 등록 (POST)
-	@PostMapping("/seller/new/product")
-	@ResponseBody
-	public ResponseDto<Integer> itemSave(@RequestBody Item item, @AuthenticationPrincipal PrincipalDetail principal) {
-		itemService.상품등록(item, principal.getUser());
-		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
-	}
-
-	// 상품 수정 (POST)
-	@PostMapping("/seller/update/product/{id}")
-	public String itemUpdate(Item item, @PathVariable("id") int id) {
-		itemService.상품수정(item, id);
-		return "redrect:/";
-	}
-	
-	// 상품 삭제 (DELETE)
-	@GetMapping("/seller/delete/{id}")
-	public String itemDelete(@PathVariable("id") int id) {
-		itemService.상품삭제(id);
-		return "/";
-	}
-
 }
