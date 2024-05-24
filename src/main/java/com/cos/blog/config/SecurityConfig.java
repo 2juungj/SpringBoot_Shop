@@ -39,8 +39,7 @@ public class SecurityConfig {
 				.permitAll()
 				.requestMatchers(RegexRequestMatcher.regexMatcher("/board/\\d+")).permitAll()
 //				.requestMatchers("/board/**").hasRole("ADMIN")
-				.requestMatchers("/seller/**").hasRole("ADMIN")
-				.requestMatchers("/seller/**").hasRole("SELLER")
+				.requestMatchers("/seller/**").hasAnyRole("ADMIN","SELLER")
 				.anyRequest()
 				.authenticated());
 		http.formLogin(f -> f.loginPage("/auth/loginForm")
