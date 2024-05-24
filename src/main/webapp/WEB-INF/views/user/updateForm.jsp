@@ -24,6 +24,11 @@
 		</div>
 		
 		<div class="form-group">
+			<label for="email">이름:</label> 
+			<input type="text" value="${principal.user.ordername}" class="form-control" placeholder="이름을 입력해주세요." id="ordername" readonly>
+		</div>
+		
+		<div class="form-group">
 			<label for="email">주소:</label> 
 			<input type="text" value="${principal.user.address}" class="form-control" placeholder="주소를 입력해주세요." id="address" >
 		</div>

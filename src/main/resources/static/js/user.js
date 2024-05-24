@@ -14,6 +14,7 @@ let index = {
 			username: $("#username").val(),
 			password: $("#password").val(),
 			email: $("#email").val(),
+			ordername: $("#ordername").val(),
 			address: $("#address").val(),
 			tel: $("#tel").val()			
 		};
@@ -48,6 +49,7 @@ let index = {
 			id: $("#id").val(),
 			password: $("#password").val(),
 			email: $("#email").val(),
+			ordername: $("#ordername").val(),
 			address: $("#address").val(),
 			tel: $("#tel").val()
 		};

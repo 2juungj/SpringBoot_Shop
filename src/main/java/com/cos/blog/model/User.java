@@ -44,6 +44,8 @@ public class User {
 	
 	private String tel;
 	
+	private String ordername; // 주문에 사용할 수령자의 이름
+	
 	// @ColumnDefault("'user'")
 	// DB는 RoleType이란 게 없다.
 	@Enumerated(EnumType.STRING)
@@ -57,7 +59,7 @@ public class User {
 
 	@Builder
 	public User(String username, String password, String email, RoleType role, String oauth, String oauthId,
-			Timestamp createDate, String address, String tel) {
+			Timestamp createDate, String address, String tel, String ordername) {
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -67,6 +69,7 @@ public class User {
 		this.createDate = createDate;
 		this.address =address;
 		this.tel = tel;
+		this.ordername = ordername;
 	}
 
 	

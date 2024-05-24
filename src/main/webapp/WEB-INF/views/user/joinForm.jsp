@@ -6,15 +6,19 @@
 <div class="container">
 	<form action="/action_page.php">
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="아이디 입력" id="username">
+			<input type="text" class="form-control" placeholder="아이디 입력" id="username" required>
 		</div>
 
 		<div class="form-group">
-			<input type="password" class="form-control" placeholder="비밀번호 입력" id="password">
+			<input type="password" class="form-control" placeholder="비밀번호 입력" id="password" required>
 		</div>
 
 		<div class="form-group">
-			<input type="email" class="form-control" placeholder="이메일 입력" id="email">
+			<input type="email" class="form-control" placeholder="이메일 입력" id="email" required>
+		</div>
+		
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="이름 입력" id="ordername">
 		</div>
 
 		<div class="form-group">
