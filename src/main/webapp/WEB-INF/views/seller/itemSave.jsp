@@ -7,12 +7,17 @@
 	<h1 style="text-align: center;">상품 등록</h1>
 	<div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
 		<!-- 사진 첨부 및 미리보기 -->
-		<form method="post" action="/upload" enctype="multipart/form-data">
+		<form method="post"  enctype="multipart/form-data">
 			<img id="imagePreview" src="#" alt=" 사진을 추가해주세요" style="max-width: 200px; max-height: 200px;">
 			<div>
-				<br> <input type="file"  id="itemimage" name="image" onchange="previewImage(event)" > <br>
+				<br> 
+				<input type="file" id="itemimage" name="itemimage" onchange="previewImage(event)"  required> 
+				<br>
 			</div>
-			<br> <input type="button" value="이미지 비우기" onclick="clearImage()">
+			<br>
+			<input type="button" value="이미지 비우기" onclick="clearImage()">
+			<br><br>
+			<input type="button" value="이미지 저장" id="btn-saveimage">
 		</form>
 		<div style="flex: 1;">
 			<div>
@@ -42,7 +47,9 @@
 		var reader = new FileReader();
 		reader.onload = function() {
 			var output = document.getElementById('imagePreview');
+			var imagePath = document.getElementById('imagePath');
 			output.src = reader.result;
+			imagePath.value = event.target.value;
 		}
 		reader.readAsDataURL(event.target.files[0]);
 	}
@@ -52,11 +59,13 @@
 		output.src = "#"; // 이미지 초기화
 		var fileInput = document.querySelector('input[type=file]');
 		fileInput.value = ""; // 파일 입력값 초기화
+		var imagePath = document.getElementById('imagePath');
+		imagePath.value = ""; // 이미지 경로 초기화
+		 var fileInput = document.getElementById('itemimage');
+		    fileInput.value = ""; // 파일 입력값 초기화
 	}
 </script>
 
 <script src="/js/seller.js"></script>
+<script src="/js/seller2.js"></script>
 <%@ include file="../layout/footer.jsp"%>
-
-
-
