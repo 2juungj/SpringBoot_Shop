@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ include file="../layout/header.jsp"%>
 
 
@@ -16,14 +16,17 @@
 				<div class="col mb-5">
 					<div class="card h-100">
 						<!-- Product image-->
-						<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+						<div class="image-container" style="width: 100%; padding-top: 100%; position: relative;">
+                            <img class="card-img-top" src="/image/upload/${fn:substringAfter(item.itemImage, 'C:\\fakepath\\')}" 
+                                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
 						<!-- Product details-->
 						<div class="card-body p-4">
 							<div class="text-center">
 								<!-- Product name-->
 								<h5 class="fw-bolder">${item.itemName}</h5>
 								<!-- Product price-->
-								$40.00 - $80.00
+								${item.price}원
 							</div>
 						</div>
 						<!-- Product actions-->
@@ -40,13 +43,12 @@
 </section>
 
 
-
 <ul class="pagination justify-content-center">
     <c:if test="${items.totalPages > 1}">
         <!-- Previous page button -->
         <c:choose>
             <c:when test="${items.first}">
-                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item disabled"><span class="page-link">Previous</span></li>
             </c:when>
             <c:otherwise>
                 <li class="page-item"><a class="page-link" href="?page=${items.number - 1}">Previous</a></li>
@@ -54,13 +56,13 @@
         </c:choose>
         
         <!-- Page numbers -->
-        <c:forEach var="pageNumber" begin="1" end="${items.totalPages}">
+        <c:forEach var="pageNumber" begin="0" end="${items.totalPages - 1}">
             <c:choose>
                 <c:when test="${pageNumber eq items.number}">
-                    <li class="page-item active" aria-current="page"><span class="page-link">${pageNumber}</span></li>
+                    <li class="page-item active" aria-current="page"><span class="page-link">${pageNumber + 1}</span></li>
                 </c:when>
                 <c:otherwise>
-                    <li class="page-item"><a class="page-link" href="?page=${pageNumber}">${pageNumber}</a></li>
+                    <li class="page-item"><a class="page-link" href="?page=${pageNumber}">${pageNumber + 1}</a></li>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
@@ -68,7 +70,7 @@
         <!-- Next page button -->
         <c:choose>
             <c:when test="${items.last}">
-                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                <li class="page-item disabled"><span class="page-link">Next</span></li>
             </c:when>
             <c:otherwise>
                 <li class="page-item"><a class="page-link" href="?page=${items.number + 1}">Next</a></li>
