@@ -33,7 +33,7 @@ public class ItemController {
 
 	// 상품 수정 페이지 (GET)
 	@GetMapping("/seller/update/{id}")
-	public String itemUpdateForm(@PathVariable("id") int id, Model model) {
+	public String itemUpdateForm(@PathVariable int id, Model model) {
 		model.addAttribute("item", itemService.상품불러오기(id));
 		return "seller/itemUpdateForm";
 	}

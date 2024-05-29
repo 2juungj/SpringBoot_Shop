@@ -11,7 +11,7 @@
 
 	<!-- 장바구니에 상품을 담기 위해 itemId 값이 필요하다. -->
 	<div class="row">
-		<input type="hidden" value="${item.id}" id="itemid">
+		<input type="hidden" value="${item.id}" id="id">
 	</div>
 	<div class="row" style="float: left; text-align: center; width: 35%;">
 		<img alt="productPhoto" src="/image/upload/${fn:substringAfter(item.itemImage, 'C:\\fakepath\\')}" width="150%"">
@@ -21,7 +21,7 @@
 		<div class="form-group" style="text-align: left;">
 			<h1>${item.itemName }</h1>
 			<c:if test="${item.user.id == principal.user.id}">
-				<button href="/item/${item.id}/itemUpdateForm" class="btn btn-default" >수정</button>
+				<a href="/seller/update/${item.id}" class="btn btn-default" >수정</a>
 				<button id="btn-delete" class="btn btn-default" >삭제</button>
 			</c:if>
 			<br> <br> <br> <br>
