@@ -52,6 +52,9 @@ public class UserService {
 			String encPassword = encoder.encode(rawPassword);
 			persistance.setPassword(encPassword);
 			persistance.setEmail(user.getEmail());
+			persistance.setOrdername(user.getOrdername());
+			persistance.setAddress(user.getAddress());
+			persistance.setTel(user.getTel());
 		}
 		
 		
