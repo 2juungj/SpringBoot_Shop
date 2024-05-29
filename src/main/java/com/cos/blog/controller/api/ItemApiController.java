@@ -22,7 +22,7 @@ public class ItemApiController {
 	private ItemService itemService;
 
 	// 상품 등록 (POST)
-	@PostMapping("/seller/new/product")
+	@PostMapping("/seller/new/item")
 	@ResponseBody
 	public ResponseDto<Integer> itemSave(@RequestBody Item item, @AuthenticationPrincipal PrincipalDetail principal) {
 		itemService.상품등록(item, principal.getUser());
@@ -30,7 +30,7 @@ public class ItemApiController {
 	}
 
 	// 상품 수정 (POST)
-	@PostMapping("/seller/update/product/{id}")
+	@PostMapping("/seller/update/item/{id}")
 	public String itemUpdate(Item item, @PathVariable("id") int id) {
 		itemService.상품수정(item, id);
 		return "redrect:/";

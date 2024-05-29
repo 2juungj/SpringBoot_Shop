@@ -28,14 +28,14 @@ public class ItemController {
 	// 상품 등록 페이지 (GET)
 	@GetMapping("/seller/new")
 	public String itemSaveForm(Item item) {
-		return "seller/itemSave";
+		return "seller/itemSaveForm";
 	}
 
 	// 상품 수정 페이지 (GET)
 	@GetMapping("/seller/update/{id}")
 	public String itemUpdateForm(@PathVariable("id") int id, Model model) {
 		model.addAttribute("item", itemService.상품불러오기(id));
-		return "seller/itemUpdate";
+		return "seller/itemUpdateForm";
 	}
 	
 	// 상품 상세 페이지 (GET)

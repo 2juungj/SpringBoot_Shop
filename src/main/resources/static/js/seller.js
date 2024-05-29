@@ -16,7 +16,7 @@ let index = {
 
 		$.ajax({
 			type: "POST",
-			url: "/seller/new/product",
+			url: "/seller/new/item",
 			data: JSON.stringify(data), 
 			contentType: "application/json; charset = utf-8", 
 			dataType: "json" 
@@ -33,6 +33,7 @@ let index = {
 			alert(JSON.stringify(error));
 		});
 	},
+	
 }
 
 index.init();
