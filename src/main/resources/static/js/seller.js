@@ -6,6 +6,9 @@ let index = {
 		$("#btn-update").on("click", () => { 
 			this.update();
 		});
+		$("#btn-delete").on("click", () => { 
+			this.deleteById();
+		});
 	},
 
 	save: function() {
@@ -60,6 +63,26 @@ let index = {
 			}
 			else{
 				alert("상품수정 완료");
+				location.href = "/";
+			}
+			
+		}).fail(function(error) {
+			alert(JSON.stringify(error));
+		});
+	},
+	
+	deleteById: function() {
+		let id = $("#id").val();
+		$.ajax({
+			type: "DELETE",
+			url: "/seller/delete/item/" + id,
+			dataType: "json"
+		}).done(function(resp) {
+			if(resp.status === 500){
+				alert("상품삭제 실패");
+			}
+			else{
+				alert("상품삭제 완료");
 				location.href = "/";
 			}
 			

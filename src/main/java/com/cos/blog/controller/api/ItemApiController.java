@@ -36,10 +36,10 @@ public class ItemApiController {
 	}
 	
 	// 상품 삭제 (DELETE)
-	@DeleteMapping("/seller/delete/{id}")
-	public String itemDelete(@PathVariable int id) {
+	@DeleteMapping("/seller/delete/item/{id}")
+	public ResponseDto<Integer> itemDelete(@PathVariable int id) {
 		itemService.상품삭제(id);
-		return "/";
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 
 }

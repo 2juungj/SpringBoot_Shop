@@ -71,5 +71,6 @@
 
 
 <div class="footer" style="position: fixed; left: 0; bottom: 0; width: 100%; background-color: #f5f5f5; text-align: center;">
+	<script src="/js/seller.js"></script>
 	<%@ include file="../layout/footer.jsp"%>
 </div>
