@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,11 +30,12 @@ public class ItemApiController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 
-	// 상품 수정 (POST)
-	@PostMapping("/seller/update/item/{id}")
-	public String itemUpdate(Item item, @PathVariable("id") int id) {
+	// 상품 수정 (PUT)
+	@PutMapping("/seller/update/item/{id}")
+	@ResponseBody
+	public ResponseDto<Integer> itemUpdate(@RequestBody Item item, @PathVariable int id) {
 		itemService.상품수정(item, id);
-		return "redrect:/";
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 	
 	// 상품 삭제 (DELETE)

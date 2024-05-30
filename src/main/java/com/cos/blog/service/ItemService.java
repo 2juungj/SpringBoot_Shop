@@ -43,6 +43,9 @@ public class ItemService {
 		updateItem.setItemText(item.getItemText());
 		updateItem.setPrice(item.getPrice());
 		updateItem.setStock(item.getStock());
+		if (item.getItemImage() != null && !item.getItemImage().isEmpty()) {
+	        updateItem.setItemImage(item.getItemImage());
+	    }
 		itemRepository.save(updateItem);
 	}
 	
