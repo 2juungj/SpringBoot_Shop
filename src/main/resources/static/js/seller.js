@@ -83,7 +83,7 @@ let index = {
 			}
 			else{
 				alert("상품삭제 완료");
-				location.href = "/";
+				location.href = "/item";
 			}
 			
 		}).fail(function(error) {
