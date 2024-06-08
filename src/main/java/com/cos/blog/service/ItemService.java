@@ -20,7 +20,6 @@ public class ItemService {
 	public void 상품등록(Item item, User user) {
 		item.setCount(0);
 		item.setUser(user);
-		item.setSoldout(false);
 		itemRepository.save(item);
 	}
 	

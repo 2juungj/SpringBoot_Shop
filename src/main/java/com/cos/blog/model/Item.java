@@ -42,10 +42,6 @@ public class Item {
 	@Column(nullable = false)
 	private int stock;					// 재고
 	
-	@Column(nullable = false)
-	private boolean soldout;		// 품절 유무
-	// 판매수량과 품절유무는 자동으로
-	
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	private User user;					// 판매자 
