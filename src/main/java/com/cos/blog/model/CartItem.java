@@ -9,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,5 +34,12 @@ public class CartItem {
 	private Item item;
 	
 	private int count; // 상품 개수
+	
+	@Builder
+	public CartItem(Cart cart, Item item, int count) {
+		this.cart = cart;
+		this.item = item;
+		this.count = count;
+	}
 	
 }

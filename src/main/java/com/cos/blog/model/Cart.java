@@ -11,7 +11,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -34,9 +33,14 @@ public class Cart {
 	@JoinColumn(name = "userId")
 	private User user; // 해당 유저의 장바구니
 	
-	private int count; // 카트에 담긴 상품 개수
+	private int count; // 카트에 담긴 총 상품 개수
 	
 	@OneToMany(mappedBy = "cart")
     private List<CartItem> cartItems = new ArrayList<>();
 	
+	@Builder
+	public Cart(User user, int count) {
+		this.user = user;
+		this.count = count;
+	}
 }

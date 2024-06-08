@@ -51,7 +51,7 @@
 				</c:when>
 				<c:otherwise>
 					<div class="form-horizontal" style="text-align: left;">
-						<label>구매수량 : </label> <select class="form-control" id="select_count">
+						<label>구매수량 : </label> <select class="form-control" id="count">
 							<c:forEach begin="1" end="${item.stock}" var="count">
 								<option>${count}</option>
 							</c:forEach>
@@ -80,5 +80,6 @@
 
 <div class="footer" style="position: fixed; left: 0; bottom: 0; width: 100%; background-color: #f5f5f5; text-align: center;">
 	<script src="/js/seller.js"></script>
+	<script src="/js/cart.js"></script>
 	<%@ include file="../layout/footer.jsp"%>
 </div>
