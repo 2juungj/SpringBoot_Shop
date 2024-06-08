@@ -21,8 +21,8 @@
 		<div class="form-group" style="text-align: left;">
 			<h1>${item.itemName }</h1>
 			<c:if test="${item.user.id == principal.user.id}">
-				<a href="/seller/update/${item.id}" class="btn btn-default" >수정</a>
-				<button id="btn-delete" class="btn btn-default" >삭제</button>
+				<a href="/seller/update/${item.id}" class="btn btn-default">수정</a>
+				<button id="btn-delete" class="btn btn-default">삭제</button>
 			</c:if>
 			<br> <br> <br> <br>
 			<p>가격 : ${item.price}원</p>
@@ -44,26 +44,34 @@
 				원
 			</p>
 
-
-			<div class="form-horizontal" style="text-align: left;">
-				<label>구매수량 : </label> <select class="form-control" id="select_count">
-					<c:forEach begin="1" end="${item.stock}" var="count">
-						<option>${count}</option>
-					</c:forEach>
-				</select>
-			</div>
+			<c:choose>
+				<c:when test="${item.stock < 1}">
+					<br>
+					<p style="color: red;">품절된 상품입니다.</p>
+				</c:when>
+				<c:otherwise>
+					<div class="form-horizontal" style="text-align: left;">
+						<label>구매수량 : </label> <select class="form-control" id="select_count">
+							<c:forEach begin="1" end="${item.stock}" var="count">
+								<option>${count}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 
 
-
-		<div class="row">
-			<div class="selected_option" style="text-align: right;"></div>
-			<div style="text-align: center;">
-				<button class="btn btn-default" id="btn-order">주문하기</button>
-				<button class="btn btn-default" id="btn-cart">장바구니</button>
-				<button class="btn btn-default" id="btn-wishlist">위시리스트</button>
+		<c:if test="${item.stock >= 1}">
+			<div class="row">
+				<div class="selected_option" style="text-align: right;"></div>
+				<div style="text-align: center;">
+					<button class="btn btn-default" id="btn-order">주문하기</button>
+					<button class="btn btn-default" id="btn-cart">장바구니</button>
+					<button class="btn btn-default" id="btn-wishlist">위시리스트</button>
+				</div>
 			</div>
-		</div>
+		</c:if>
 	</div>
 </div>
 
