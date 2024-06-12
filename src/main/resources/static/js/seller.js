@@ -63,7 +63,7 @@ let index = {
 			}
 			else{
 				alert("상품수정 완료");
-				location.href = "/";
+				location.href = "/item/"+id;
 			}
 			
 		}).fail(function(error) {
