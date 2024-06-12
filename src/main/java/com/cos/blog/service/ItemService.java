@@ -30,7 +30,7 @@ public class ItemService {
 	
 	@Transactional
 	public void 상품수정(Item item, int id) {
-		Item updateItem = itemRepository.findItemById(id);
+		Item updateItem = itemRepository.findById(id).get();
 		updateItem.setItemName(item.getItemName());
 		updateItem.setItemText(item.getItemText());
 		updateItem.setPrice(item.getPrice());

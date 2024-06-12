@@ -8,6 +8,5 @@ import com.cos.blog.model.Cart;
 
 public interface CartRepository extends JpaRepository<Cart, Integer> {
 	Optional<Cart> findByUserId(int id);
-	Optional<Cart> findCartById(int id);
-	Optional<Cart> findCartByUserId(int id);
+	Optional<Cart> findById(int id);
 }
