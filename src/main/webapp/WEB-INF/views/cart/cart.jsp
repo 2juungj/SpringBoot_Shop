@@ -61,8 +61,10 @@
 		<p>
 			<!-- 상품이 담기지 않았을 때, 기본값 0원 -->
 			결제 금액: <span id="allPrice">0</span>원
+			<span id="shippingFeeMessage" style="display: none;">(배송비 포함)</span>
+			<span id="freeShippingMessage" style="display: none;">(배송비 무료)</span>
 		</p>
-		<button class="btn btn-default">선택된 상품 주문하기</button>
+		<button class="btn btn-default" id="btn-buySelected">선택된 상품 주문하기</button>
 		<div>
 			<button class="btn btn-default" id="btn-delete">선택된 상품 장바구니에서 삭제하기</button>
 		</div>
@@ -105,8 +107,20 @@
 				allPrice += price * quantity;
 			}
 		});
-		document.getElementById('allPrice').innerText = allPrice
-				.toLocaleString();
+		// 배송비 추가 로직
+		var shippingFee = 0;
+		var shippingMessage = '';
+		if (allPrice > 0 && allPrice < 30000) {
+			shippingFee = 3000;
+			shippingMessage = '(배송비 포함)';
+		} else if (allPrice >= 30000) {
+			shippingMessage = '(배송비 무료)';
+		}
+		var totalPrice = allPrice + shippingFee;
+
+		document.getElementById('allPrice').innerText = totalPrice.toLocaleString();
+		document.getElementById('shippingFeeMessage').style.display = shippingFee > 0 ? 'inline' : 'none';
+		document.getElementById('freeShippingMessage').style.display = allPrice >= 30000 ? 'inline' : 'none';
 	}
 
 	// 초기 로드 시 총 금액 업데이트
