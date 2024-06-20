@@ -66,6 +66,6 @@
 	}
 </script>
 
-<script src="/js/seller.js"></script>
-<script src="/js/seller2.js"></script>
+<script src="/js/item.js"></script>
+<script src="/js/fileUpload.js"></script>
 <%@ include file="../layout/footer.jsp"%>
