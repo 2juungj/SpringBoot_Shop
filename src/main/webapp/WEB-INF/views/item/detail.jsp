@@ -66,7 +66,7 @@
 			<div class="row">
 				<div class="selected_option" style="text-align: right;"></div>
 				<div style="text-align: center;">
-					<button class="btn btn-default" id="btn-order">주문하기</button>
+					<button class="btn btn-default" id="btn-orderItemForm">주문하기</button>
 					<button class="btn btn-default" id="btn-cart">장바구니</button>
 					<button class="btn btn-default" id="btn-wishlist">위시리스트</button>
 				</div>

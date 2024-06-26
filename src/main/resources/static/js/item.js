@@ -9,6 +9,9 @@ let index = {
 		$("#btn-delete").on("click", () => { 
 			this.deleteById();
 		});
+		$("#btn-orderItemForm").on("click", () => { 
+			this.orderForm();
+		});
 	},
 
 	save: function() {
@@ -89,6 +92,14 @@ let index = {
 		}).fail(function(error) {
 			alert(JSON.stringify(error));
 		});
+	},
+	
+	orderForm: function() {
+		let data = {
+			id: $("#id").val(),
+			count: $("#count").val()
+		};
+		location.href = `/order/orderItem/${data.id}/${data.count}`;
 	},
 	
 }

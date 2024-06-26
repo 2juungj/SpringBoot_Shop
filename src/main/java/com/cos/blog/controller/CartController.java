@@ -30,7 +30,7 @@ public class CartController {
 
 	// 장바구니 페이지
 	@GetMapping("/cart")
-	public String Cart(Model model, @AuthenticationPrincipal PrincipalDetail principal) {
+	public String cart(Model model, @AuthenticationPrincipal PrincipalDetail principal) {
 		User user =  userRepository.findById(principal.getUser().getId()).get(); // 로그인 한 사용자의 id로 user 데이터 호출
 		Cart cart = cartRepository.findByUserId(user.getId()).get(); // 로그인 한 사용자의 장바구니 호출
 

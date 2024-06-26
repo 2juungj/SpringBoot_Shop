@@ -6,6 +6,9 @@ let indexCart = { // item/detail.jsp에서 seller.js의 index 함수와 이름�
 		$("#btn-delete").on("click", () => {
 			this.deleteSelected();
 		});
+		$("#btn-orderCartForm").on("click", () => {
+			this.orderForm();
+		});
 	},
 
 	save: function() {
@@ -36,7 +39,7 @@ let indexCart = { // item/detail.jsp에서 seller.js의 index 함수와 이름�
 	deleteSelected: function() {
 		let ids = [];
 		$(".itemCheckbox:checked").each(function() {
-			ids.push($(this).closest("tr").find("#id").val());
+			ids.push($(this).closest("tr").find("#id").val()); // 체크박스가 선택된 cartItem.id를 ids 리스트에 담는다.
 		});
 		if (ids.length === 0) {
 			alert("삭제할 상품을 선택해주세요.");
@@ -58,6 +61,19 @@ let indexCart = { // item/detail.jsp에서 seller.js의 index 함수와 이름�
 		}).fail(function(error) {
 			alert(JSON.stringify(error));
 		});
+	},
+	
+	orderForm: function() {
+		let ids = [];
+		$(".itemCheckbox:checked").each(function() {
+			ids.push($(this).closest("tr").find("#id").val());
+		});
+		if (ids.length === 0) {
+			alert("구매할 상품을 선택해주세요.");
+			return;
+		}
+		let queryString = ids.map(id => `id=${id}`).join("&");
+		location.href = `/order/orderCart?${queryString}`; // 체크박스가 선택된 cartItem.id들을 쿼리스트링으로 담아서 전달 (ajax를 사용하지 않으므로)
 	},
 
 }

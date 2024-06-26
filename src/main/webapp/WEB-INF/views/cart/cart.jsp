@@ -13,12 +13,12 @@
 		<table class="table table-hover" style="width: 70%; margin: auto; border-bottom: 1px solid #D5D5D5;">
 			<thead>
 				<tr>
-					<th></th>
+					<th>이미지</th>
 					<th colspan="2" style="text-align: center;">상품명</th>
 					<th>가격</th>
 					<th>수량</th>
 					<th>상품정보</th>
-					<th>전체 선택 <input type="checkbox" id="selectAll" onclick="toggleAll(this)" checked></th>
+					<th style="white-space: nowrap;">전체 선택 <input type="checkbox" id="selectAll" onclick="toggleAll(this)" checked></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -64,7 +64,7 @@
 			<span id="shippingFeeMessage" style="display: none;">(배송비 포함)</span>
 			<span id="freeShippingMessage" style="display: none;">(배송비 무료)</span>
 		</p>
-		<button class="btn btn-default" id="btn-buySelected">선택된 상품 주문하기</button>
+		<button class="btn btn-default" id="btn-orderCartForm">선택된 상품 주문하기</button>
 		<div>
 			<button class="btn btn-default" id="btn-delete">선택된 상품 장바구니에서 삭제하기</button>
 		</div>
