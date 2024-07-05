@@ -27,7 +27,10 @@
 							<input type="hidden" id="itemId" value="${item.id}">
 							<input type="hidden" id="itemCount" value="${itemCount}">
 						</td>
-						<td>${item.itemName}</td>
+						<td>
+							${item.itemName}
+							<input type="hidden" id="itemName" value="${item.itemName}">	
+						</td>
 						<td>${item.price}원</td>
 						<td>${itemCount}</td>
 						<td>${item.itemText}</td>
@@ -79,13 +82,6 @@
 		</div>
 		
 		<div class="col-md-12" style="text-align: center; margin: 80px 0;">
-			<h1 class="page-header">결제수단 확인</h1>
-			<div style="text-align: center;">
-				<input type="radio" name="cal_info" value="transfer"><label style="margin-right: 50px;">&nbsp;계좌이체</label>
-				<input type="radio" name="cal_info" value="no_bankingBook"><label style="margin-right: 50px;">&nbsp;무통장 입금</label>
-				<input type="radio" name="cal_info" value="tel_billing"><label style="margin-right: 50px;">&nbsp;핸드폰 결제</label>
-				<input type="radio" name="cal_info" value="card"><label>&nbsp;카드 결제</label>
-			</div>
 			<hr>
 			<div class="col-md-12" style="text-align: center; margin: 50px 0;">
 				<c:set var="itemPrice" value="${item.price}" />
@@ -99,9 +95,9 @@
       						  <input type="hidden" id="shippingFee" value="0">
     					</c:when>
     					<c:otherwise>
-        					배송비: 3000원
-        					<c:set var="shippingFee" value="3000" />
-        					<input type="hidden" id="shippingFee" value="3000">
+        					배송비: 3000원 <!-- 테스트를 위해 배송비 0 -->
+        					<c:set var="shippingFee" value="0" />
+        					<input type="hidden" id="shippingFee" value="0">
   						</c:otherwise>
 					</c:choose>
 				</label>
@@ -117,7 +113,6 @@
 		</div>
 	</div>
 	
-	
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script src="/js/order.js"></script> <%@ include file="../layout/footer.jsp"%>
