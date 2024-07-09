@@ -6,7 +6,7 @@
 <div class="container">
 		<div class="col-md-12" style="text-align: center;">
 			<br>
-			<h1 class="page-header">주문하기</h1>
+			<h1 class="page-header">주문 상세보기</h1>
 			<br>
 		</div>
 		<div class="row qnas" style="text-align: center;">
@@ -18,25 +18,21 @@
 						<th style="white-space: nowrap;">상품명</th> 
 						<th style="white-space: nowrap;">가격</th>
 						<th style="white-space: nowrap;">수량</th>
-						<th style="white-space: nowrap;">상품정보</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:set var="allItemPrice" value="0" />
 					<c:set var="allCount" value="0"/>
-					<c:forEach items="${cartItems}" var="cartItem" varStatus="status">
-						<c:set var="itemPriceXCount" value="${cartItem.item.price * cartItem.count}" />
+					<c:forEach items="${orderItems}" var="orderItem" varStatus="status">
+						<c:set var="itemPriceXCount" value="${orderItem.itemPrice * orderItem.itemCount}" />
                    		<c:set var="allItemPrice" value="${allItemPrice + itemPriceXCount}" />
-                   		<c:set var="allCount" value="${allCount + cartItem.count}"/>
-                   		<input type="hidden" id="id" value="${cartItem.id}"/>
-                   		<input type="hidden" id="allCount" value="${allCount}"/>
+                   		<c:set var="allCount" value="${allCount + orderItem.itemCount}"/>
 						<tr>
-							<td><img alt="thumbnail" src="/image/upload/${fn:substringAfter(cartItem.item.itemImage, 'C:\\fakepath\\')}" width="20%"></td>
+							<td><img alt="thumbnail" src="/image/upload/${fn:substringAfter(orderItem.itemImage, 'C:\\fakepath\\')}" width="20%"></td>
 							<td></td>
-							<td>${cartItem.item.itemName}</td>
-							<td>${cartItem.item.price}원</td>
-							<td>${cartItem.count}</td>
-							<td>${cartItem.item.itemText}</td>
+							<td>${orderItem.itemName}</td>
+							<td>${orderItem.itemPrice}원</td>
+							<td>${orderItem.itemCount}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -45,8 +41,7 @@
 		
 		<div class="col-md-12" style="text-align: center;">
 			<br><br><br><br>
-			<h1 class="page-header">주문정보 확인</h1>
-			<h5 style="color: red;">주문자 정보와 배송지가 다른 경우 직접 입력해주세요.</h5>
+			<h1 class="page-header">주문정보</h1>
 			<br>
 		</div>
 		<div class="row justify-content-center">
@@ -54,25 +49,25 @@
 				<div class="form-group">
 					<label for="ordername" class="col-sm-2 control-label" style="white-space: nowrap;">주문자 성함</label>
 					<div class="col-sm-10">
-						<input class="form-control" id="ordername" style="width: 130%;" value="${principal.user.ordername}" placeholder="이름 입력" required>
+						<input class="form-control" id="ordername" style="width: 130%;" value="${order.orderName}" readonly>
 					</div>
 				</div>				
 				<div class="form-group">
 					<label for="address" class="col-sm-2 control-label" style="white-space: nowrap;">주소</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="text" id="address" value="${principal.user.address}" style="width: 130%;" placeholder="주소 입력" required>
+						<input class="form-control" type="text" id="address" value="${order.orderAddress}" style="width: 130%;" readonly>
 					</div>
 				</div>				
 				<div class="form-group">
 					<label for="email" class="col-sm-2 control-label" style="white-space: nowrap;">Email</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="email" id="email"  value="${principal.user.email}" style="width: 130%;" placeholder="이메일 입력" required>
+						<input class="form-control" type="email" id="email"  value="${order.orderEmail}" style="width: 130%;" readonly>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="tel" class="col-sm-2 control-label" style="white-space: nowrap;">전화번호</label>
 					<div class="col-sm-10">
-						<input class="form-control" type="tel" id="tel" value="${principal.user.tel}" style="width: 130%;" placeholder="전화번호 입력" required>
+						<input class="form-control" type="tel" id="tel" value="${order.orderTel}" style="width: 130%;" readonly>
 					</div>
 				</div>				
 			</div>
@@ -104,11 +99,10 @@
 				</div>
 			</div>
 			<div>
-				<button class="btn-default"  id="btn-orderCart">결제하기</button>
+				<!--  <button class="btn-default"  id="btn-orderCart">결제하기</button> -->
 			</div>
 		</div>
 	</div>
 	
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+
 <script src="/js/order.js"></script> <%@ include file="../layout/footer.jsp"%>

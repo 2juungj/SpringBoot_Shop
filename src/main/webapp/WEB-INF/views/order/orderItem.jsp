@@ -48,13 +48,6 @@
 		<div class="row justify-content-center">
 			<div class="form-horizontal">
 				<div class="form-group">
-					<label for="username" class="col-sm-2 control-label" style="white-space: nowrap;">ID</label>
-					<div class="col-sm-10">
-						<input class="form-control" id="username"  style="width: 130%;" value="${principal.user.username}" readonly>
-					</div>
-				</div>
-				
-				<div class="form-group">
 					<label for="ordername" class="col-sm-2 control-label" style="white-space: nowrap;">주문자 성함</label>
 					<div class="col-sm-10">
 						<input class="form-control" id="ordername" style="width: 130%;" value="${principal.user.ordername}" placeholder="이름 입력" required>

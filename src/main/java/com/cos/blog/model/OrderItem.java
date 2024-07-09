@@ -37,6 +37,7 @@ public class OrderItem {
 	private int itemPrice; // 주문 상품 가격
 	private int itemCount; // 주문 상품 수량
 	private int itemAllPrice; // 총 금액 (= 가격 * 수량)
+	private String itemImage; // 상품 이미지
 
 	private int cancel; // 주문 취소 여부 (0: 취소X, 1: 취소 O)
 
@@ -51,6 +52,7 @@ public class OrderItem {
 		orderItem.setItemPrice(cartItem.getItem().getPrice());
 		orderItem.setItemCount(cartItem.getCount());
 		orderItem.setItemAllPrice(cartItem.getItem().getPrice() * cartItem.getCount());
+		orderItem.setItemImage(cartItem.getItem().getItemImage());
 		orderItem.setCancel(0);
 		return orderItem;
 	}
@@ -66,6 +68,7 @@ public class OrderItem {
 		orderItem.setItemPrice(item.getPrice());
 		orderItem.setItemCount(count);
 		orderItem.setItemAllPrice(item.getPrice() * count);
+		orderItem.setItemImage(item.getItemImage());
 		orderItem.setCancel(0);
 		return orderItem;
 	}

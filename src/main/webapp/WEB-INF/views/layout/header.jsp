@@ -54,6 +54,7 @@
 				<li class="nav-item"><a class="nav-link" href="/item">Shop</a></li>
 				<c:if test="${pageContext.request.userPrincipal != null}">
 					<li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li>
+					<li class="nav-item"><a class="nav-link" href="/order/orderCheck">Order</a></li>
 				</c:if>
 			</ul>
 		</div>

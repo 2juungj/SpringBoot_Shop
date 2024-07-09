@@ -1,9 +1,11 @@
 package com.cos.blog.model;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.CascadeType;
@@ -34,9 +36,9 @@ public class Order {
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<OrderItem> orderItems = new ArrayList<>();
-
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
-	private LocalDate createDate; // 구매일자
+	
+	@CreationTimestamp // 시간이 자동 입력
+	private Timestamp createDate; // 주문한 날짜와 시간
 
 	private int shippingFee; // 배송비
 
@@ -51,7 +53,7 @@ public class Order {
 	private String orderTel;
 
 	@Builder
-	public Order(User user, LocalDate createDate, int shippingFee, int allPrice, int allCount, String orderName, String orderAddress, String orderEmail, String orderTel) {
+	public Order(User user, Timestamp createDate, int shippingFee, int allPrice, int allCount, String orderName, String orderAddress, String orderEmail, String orderTel) {
 		this.userId = user.getId();
 		this.createDate = createDate;
 		this.shippingFee = shippingFee;

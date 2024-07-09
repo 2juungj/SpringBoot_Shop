@@ -1,6 +1,7 @@
 package com.cos.blog.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -161,6 +162,37 @@ public class OrderService {
 		item.setStock(item.getStock() - itemCount);
 		itemRepository.save(item);
 		return "redirect:/";
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Order> 주문불러오기(PrincipalDetail principal){
+		int userId = principal.getUser().getId(); // Order 엔티티는 User와 연결되어 있지 않고 userId 값만 지닌다.
+		
+		List<Order> userOrders = new ArrayList<>(); // 해당 사용자의 Order를 담을 리스트
+		List<Order> orders = orderRepository.findAll(); // DB의 모든 Order를 리스트로 호출
+
+		for (Order order : orders) { // userId와 order.userId가 일치하는 order를 userOrders에 추가
+			if (order.getUserId() == userId) {
+				userOrders.add(order);
+			}
+		}
+		// 리스트를 역순으로 정렬 (최신 주문 건이 상단에 위치하도록 하기 위함)
+	    Collections.reverse(userOrders);
+	    
+		return userOrders;
+	}
+	
+	@Transactional(readOnly = true)
+	public List<OrderItem> 주문상품불러오기(int id){
+		List<OrderItem> userOrderItems = new ArrayList<>(); // 해당 orderId의 OrderItem들을 담을 리스트
+		List<OrderItem> orderItems = orderItemRepository.findAll(); // DB의 모든 OrderItem을 리스트로 호출
+		
+		for (OrderItem orderItem : orderItems) { // orderId가 일치하는 orderItem을 userOrderItems 리스트에 추가
+			if(orderItem.getOrder().getId() == id) {
+				userOrderItems.add(orderItem);
+			}
+		}
+		return userOrderItems;
 	}
 
 }

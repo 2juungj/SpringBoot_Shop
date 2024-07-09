@@ -50,7 +50,7 @@ let index = {
 						location.reload();
 					} else {
 						alert("상품구매 완료");
-						location.href = "/"; // 주문 확인 페이지 구현 시 해당 주소로 이동
+						location.href = "/order/orderCheck"; // 주문 확인 페이지로 이동
 					}
 				}).fail(function(error) {
 					alert(JSON.stringify(error));
@@ -108,7 +108,7 @@ let index = {
 						location.reload();
 					} else {
 						alert("상품구매 완료");
-						location.href = "/"; // 주문 확인 페이지 구현 시 해당 주소로 이동
+						location.href = "/order/orderCheck"; // 주문 확인 페이지로 이동
 					}
 				}).fail(function(error) {
 					alert(JSON.stringify(error));
