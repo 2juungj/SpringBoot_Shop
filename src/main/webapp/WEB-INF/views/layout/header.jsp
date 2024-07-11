@@ -43,6 +43,7 @@
 						</sec:authorize>    글쓰기 보류    -->
 						<sec:authorize access="hasRole('ADMIN') or hasRole('SELLER')">
 							<li class="nav-item"><a class="nav-link" href="/seller/new">상품등록</a></li>
+							<li class="nav-item"><a class="nav-link" href="/seller/orderCheck">주문관리</a></li>
 						</sec:authorize>
 						<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보</a></li>
 						<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>

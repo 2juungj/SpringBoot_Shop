@@ -6,6 +6,12 @@ let index = {
 		$("#btn-orderCart").on("click", () => {
 			this.orderCart();
 		});
+		$("#btn-orderCancel").on("click", () => {
+			this.orderCancel();
+		});
+		$("#btn-orderCancelCheck").on("click", () => {
+			this.orderCancelCheck();
+		});
 	},
 
 	orderItem: function() {
@@ -116,6 +122,47 @@ let index = {
 			} else {
 				alert("결제가 실패하였습니다. 에러 내용: " + rsp.error_msg);
 			}
+		});
+	},
+	
+	orderCancel: function() {
+		let data = {
+			cancelText: $("#cancelText").val(),
+			id: $("#orderId").val()
+		};
+
+		$.ajax({
+			type: "PUT",
+			url: "/order/cancel",
+			data: JSON.stringify(data), 
+			contentType: "application/json; charset = utf-8", 
+			dataType: "json" 
+		}).done(function(resp) {
+			alert("주문취소 신청 완료");
+			location.reload();
+		}).fail(function(error) {
+			alert(JSON.stringify(error));
+
+		});
+	},
+	
+	orderCancelCheck: function() {
+		let data = {
+			id: $("#orderId").val()
+		};
+
+		$.ajax({
+			type: "PUT",
+			url: "/seller/cancelCheck",
+			data: JSON.stringify(data), 
+			contentType: "application/json; charset = utf-8", 
+			dataType: "json" 
+		}).done(function(resp) {
+			alert("주문취소 완료");
+			location.reload();
+		}).fail(function(error) {
+			alert(JSON.stringify(error));
+
 		});
 	},
 

@@ -51,6 +51,9 @@ public class Order {
 	private String orderAddress;
 	private String orderEmail;
 	private String orderTel;
+	
+	private int cancel; // 주문 취소 여부 (0: 취소X, 1: 취소 요청, 2: 취소 O)
+	private String cancelText; // 주문 취소 사유
 
 	@Builder
 	public Order(User user, Timestamp createDate, int shippingFee, int allPrice, int allCount, String orderName, String orderAddress, String orderEmail, String orderTel) {
@@ -63,5 +66,6 @@ public class Order {
 		this.orderAddress = orderAddress;
 		this.orderEmail =orderEmail;
 		this.orderTel = orderTel;
+		this.cancel = 0;
 	}
 }

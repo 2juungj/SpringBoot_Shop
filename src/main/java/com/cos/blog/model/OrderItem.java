@@ -39,7 +39,6 @@ public class OrderItem {
 	private int itemAllPrice; // 총 금액 (= 가격 * 수량)
 	private String itemImage; // 상품 이미지
 
-	private int cancel; // 주문 취소 여부 (0: 취소X, 1: 취소 O)
 
 	// 빌더는 1개만 만들 수 있으므로 사용X
 	// 장바구니 주문 (장바구니 페이지)
@@ -53,7 +52,6 @@ public class OrderItem {
 		orderItem.setItemCount(cartItem.getCount());
 		orderItem.setItemAllPrice(cartItem.getItem().getPrice() * cartItem.getCount());
 		orderItem.setItemImage(cartItem.getItem().getItemImage());
-		orderItem.setCancel(0);
 		return orderItem;
 	}
 	
@@ -69,7 +67,6 @@ public class OrderItem {
 		orderItem.setItemCount(count);
 		orderItem.setItemAllPrice(item.getPrice() * count);
 		orderItem.setItemImage(item.getItemImage());
-		orderItem.setCancel(0);
 		return orderItem;
 	}
 

@@ -194,5 +194,32 @@ public class OrderService {
 		}
 		return userOrderItems;
 	}
+	
+	@Transactional(readOnly = true)
+	public List<Order> 판매자주문불러오기(){
+		List<Order> orderList = orderRepository.findAll(); // 모든 관리자와 판매자가 주문을 공통 관리할 것이므로 모든 order를 리스트로 호출
+		
+		// 리스트를 역순으로 정렬 (최신 주문 건이 상단에 위치하도록 하기 위함)
+	    Collections.reverse(orderList);
+	    
+	    return orderList;
+	}
+	
+	@Transactional
+	public void 주문취소요청(Order order) {
+		Order userOrder = orderRepository.findById(order.getId()).get();
+		
+		// order의 주문취소사유와 취소현황 수정
+		userOrder.setCancelText(order.getCancelText());
+		userOrder.setCancel(1);
+	}
+	
+	@Transactional
+	public void 주문취소(Order order) {
+		Order userOrder = orderRepository.findById(order.getId()).get();
+		
+		// order의 주문취소현황을 주문취소로 수정
+		userOrder.setCancel(2);
+	}
 
 }

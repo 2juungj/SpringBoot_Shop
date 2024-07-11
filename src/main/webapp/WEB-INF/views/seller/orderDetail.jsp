@@ -101,15 +101,18 @@
 			<input type="hidden" id="orderId" value="${order.id}"> <!-- 주문취소를 위함 -->
 			<c:choose>
     			<c:when test="${order.cancel == 0}">
-					<div class="col-md-12" style="text-align: center; margin: 20px 0;">
-            			<textarea class="form-control" id="cancelText" style="width: 50%; margin: auto;" rows="4" placeholder="주문취소 사유를 입력해주세요. 입력하지 않을 경우 단순변심 사유로 주문 취소됩니다."></textarea>
-       				</div>
 					<div>
-						<button class="btn btn-danger"  id="btn-orderCancel">주문취소</button>
+						<button class="btn btn-danger"  id="btn-orderCancelCheck">주문취소</button>
 					</div>
 				</c:when>
 				<c:when test="${order.cancel == 1}">
         			<p style="color: red;">주문 취소가 신청되었습니다.</p>
+        			<div class="col-md-12" style="text-align: center; margin: 20px 0;">
+            			<textarea class="form-control" id="cancelText" style="width: 50%; margin: auto;" rows="4"  readonly>${order.cancelText}</textarea>
+       				</div>
+       				<div>
+						<button class="btn btn-danger"  id="btn-orderCancelCheck">주문취소</button>
+					</div>
    				</c:when>
     			<c:otherwise>
     				<p style="color: blue;">주문이 취소되었습니다.</p>
