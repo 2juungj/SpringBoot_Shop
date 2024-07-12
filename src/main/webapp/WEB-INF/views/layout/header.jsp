@@ -32,19 +32,18 @@
 			<c:choose>
 				<c:when test="${empty principal }">
 					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link" href="/board/notice">공지사항</a></li>
 						<li class="nav-item"><a class="nav-link" href="/auth/loginForm">로그인</a></li>
 						<li class="nav-item"><a class="nav-link" href="/auth/joinForm">회원가입</a></li>
 					</ul>
 				</c:when>
 				<c:otherwise>
 					<ul class="navbar-nav">
-						<!-- 			<sec:authorize access="hasRole('ADMIN')">  
-							<li class="nav-item"><a class="nav-link" href="/board/saveForm">글쓰기</a></li>
-						</sec:authorize>    글쓰기 보류    -->
 						<sec:authorize access="hasRole('ADMIN') or hasRole('SELLER')">
 							<li class="nav-item"><a class="nav-link" href="/seller/new">상품등록</a></li>
 							<li class="nav-item"><a class="nav-link" href="/seller/orderCheck">주문관리</a></li>
 						</sec:authorize>
+						<li class="nav-item"><a class="nav-link" href="/board/notice">공지사항</a></li>
 						<li class="nav-item"><a class="nav-link" href="/user/updateForm">회원정보</a></li>
 						<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
 					</ul>

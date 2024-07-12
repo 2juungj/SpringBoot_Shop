@@ -35,11 +35,9 @@ public class SecurityConfig {
 	SecurityFilterChain configure(HttpSecurity http) throws Exception {
 		http.csrf().disable(); // csrf 토큰 비활성화 (테스트 시 걸어두는 게 좋다.)
 		http.authorizeHttpRequests(
-				auth -> auth.requestMatchers("/","/auth/**", "/WEB-INF/**","js/**","/css/**","image/**","/dummy/**","/item/**")
+				auth -> auth.requestMatchers("/","/auth/**", "/WEB-INF/**","js/**","/css/**","image/**","/dummy/**","/item/**","/board/**")
 				.permitAll()
-				.requestMatchers(RegexRequestMatcher.regexMatcher("/board/\\d+")).permitAll()
-//				.requestMatchers("/board/**").hasRole("ADMIN")
-				.requestMatchers("/seller/**").hasAnyRole("ADMIN","SELLER")
+				.requestMatchers("/seller/**").hasAnyRole("ADMIN","SELLER") // 판매자 관련 페이지는 권한 필요
 				.anyRequest()
 				.authenticated());
 		http.formLogin(f -> f.loginPage("/auth/loginForm")
