@@ -23,13 +23,13 @@ import com.cos.blog.service.OrderService;
 public class OrderController {
 
 	@Autowired
-	OrderService orderService;
+	private OrderService orderService;
 
 	@Autowired
-	ItemRepository itemRepository;
+	private ItemRepository itemRepository;
 
 	@Autowired
-	OrderRepository orderRepository;
+	private OrderRepository orderRepository;
 
 	// 장바구니 페이지 -> 주문 페이지
 	@GetMapping("/order/orderCart")

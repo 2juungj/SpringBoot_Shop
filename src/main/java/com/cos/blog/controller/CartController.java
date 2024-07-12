@@ -20,13 +20,13 @@ import com.cos.blog.service.CartService;
 public class CartController {
 
 	@Autowired
-	UserRepository userRepository;
+	private UserRepository userRepository;
 	
 	@Autowired
-	CartRepository cartRepository;
+	private CartRepository cartRepository;
 	
 	@Autowired
-	CartService cartService;
+	private CartService cartService;
 
 	// 장바구니 페이지
 	@GetMapping("/cart")

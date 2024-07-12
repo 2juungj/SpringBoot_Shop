@@ -65,4 +65,9 @@ public class BoardService {
 	public void 댓글삭제(int replyId) {
 		replyRepository.deleteById(replyId);
 	}
+	
+	@Transactional(readOnly = true)
+	public Board 최신글불러오기() {
+		return boardRepository.findTopByOrderByIdDesc().get();
+	}
 }

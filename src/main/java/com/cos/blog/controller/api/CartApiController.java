@@ -19,7 +19,7 @@ import com.cos.blog.service.CartService;
 public class CartApiController {
 
 	@Autowired
-	CartService cartService;
+	private CartService cartService;
 
 	@PostMapping("/cart/new")
 	public ResponseDto<Integer> cartSave(@RequestBody Item item, @AuthenticationPrincipal PrincipalDetail principal) {

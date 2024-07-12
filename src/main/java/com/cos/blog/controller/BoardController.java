@@ -11,17 +11,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.cos.blog.service.BoardService;
+import com.cos.blog.service.ItemService;
 
 @Controller
 public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private ItemService itemService;
 
 	@GetMapping({ "", "/" })
 	public String index(Model model,
-			@PageableDefault(size = 1, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-		model.addAttribute("boards", boardService.글목록(pageable));
+			@PageableDefault(size = 8, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+		
+		model.addAttribute("board", boardService.최신글불러오기());
+		model.addAttribute("items", itemService.글목록(pageable));
 		return "index"; // viewResolver 작동
 	}
 	

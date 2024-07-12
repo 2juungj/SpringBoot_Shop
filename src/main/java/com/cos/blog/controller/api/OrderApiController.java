@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 public class OrderApiController {
 	
 	@Autowired
-	OrderService orderService;
+	private OrderService orderService;
 	
 	// 장바구니 상품 주문
 	@PostMapping("/order/orderCart/new")

@@ -25,20 +25,20 @@ public class ItemController {
 		return "item/itemForm";
 	}
 	
-	// 상품 등록 페이지 (GET)
+	// 상품 등록 페이지
 	@GetMapping("/seller/new")
 	public String itemSaveForm(Item item) {
 		return "seller/itemSaveForm";
 	}
 
-	// 상품 수정 페이지 (GET)
+	// 상품 수정 페이지
 	@GetMapping("/seller/update/{id}")
 	public String itemUpdateForm(@PathVariable int id, Model model) {
 		model.addAttribute("item", itemService.상품불러오기(id));
 		return "seller/itemUpdateForm";
 	}
 	
-	// 상품 상세 페이지 (GET)
+	// 상품 상세 페이지
 	@GetMapping("/item/{id}")
 	public String itemViewForm(Model model, @PathVariable("id") int id) {
 		model.addAttribute("item", itemService.상품불러오기(id));
