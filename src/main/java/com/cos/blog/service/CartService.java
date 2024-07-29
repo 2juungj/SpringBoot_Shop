@@ -94,7 +94,9 @@ public class CartService {
 		int cartCount = cart.getCount(); // 해당 유저의 cart 테이블의 count 호출
 
 		for (Integer itemId : ids) {
-			CartItem cartItem = cartItemRepository.findById(itemId).get();
+			CartItem cartItem = cartItemRepository.findById(itemId).orElseThrow(() -> {
+				return new IllegalArgumentException("장바구니 상품 불러오기 실패: 아이디를 찾을 수 없음.");
+			});
 			cartCount -= cartItem.getCount(); // 삭제할 상품이 담겨 있던 개수만큼 빼기
 			cartItemRepository.deleteById(itemId);
 		}
