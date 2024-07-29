@@ -37,7 +37,9 @@ public class CartService {
 					return cartRepository.save(newCart);
 				});
 
-		Item item = itemRepository.findById(newItem.getId()).get(); // itemId로 item를 불러온다.
+		Item item = itemRepository.findById(newItem.getId()).orElseThrow(() -> {  // itemId로 item를 불러온다.
+			return new IllegalArgumentException("상품 불러오기 실패: 아이디를 찾을 수 없음.");
+		});
 
 		cartItemRepository.findByCartIdAndItemId(cart.getId(), item.getId()) // cartId와 itemId로 cartItem을 불러온다.
 				.map(existingCartItem -> { // CartItem이 존재할 경우 수량 추가
@@ -86,7 +88,9 @@ public class CartService {
 	@Transactional
 	public void 장바구니삭제(List<Integer> ids, PrincipalDetail principal) {
 		User user = principal.getUser();
-		Cart cart = cartRepository.findByUserId(user.getId()).get();
+		Cart cart = cartRepository.findByUserId(user.getId()).orElseThrow(() -> {
+			return new IllegalArgumentException("장바구니 불러오기 실패: 아이디를 찾을 수 없음.");
+		});
 		int cartCount = cart.getCount(); // 해당 유저의 cart 테이블의 count 호출
 
 		for (Integer itemId : ids) {

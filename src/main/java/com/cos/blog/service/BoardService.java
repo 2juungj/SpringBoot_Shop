@@ -68,6 +68,8 @@ public class BoardService {
 	
 	@Transactional(readOnly = true)
 	public Board 최신글불러오기() {
-		return boardRepository.findTopByOrderByIdDesc().get();
+		return boardRepository.findTopByOrderByIdDesc().orElseThrow(() -> {
+			return new IllegalArgumentException("최신글 불러오기 실패: 글을 찾을 수 없음.");
+		});
 	}
 }

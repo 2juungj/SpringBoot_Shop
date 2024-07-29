@@ -43,7 +43,9 @@ public class OrderController {
 	// 상품 상세 페이지 -> 주문 페이지
 	@GetMapping("/order/orderItem/{id}/{count}")
 	public String orderItemForm(Model model, @PathVariable int id, @PathVariable int count) {
-		Item item = itemRepository.findById(id).get();
+		Item item = itemRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("아이템 불러오기 실패: 아이디를 찾을 수 없음.");
+		});
 
 		model.addAttribute("item", item);
 		model.addAttribute("itemCount", count);
@@ -63,7 +65,9 @@ public class OrderController {
 	@GetMapping("/order/detail/{id}")
 	public String orderDetailForm(Model model, @PathVariable int id) { // id: orderId
 		List<OrderItem> orderItemList = orderService.주문상품불러오기(id);
-		Order order = orderRepository.findById(id).get();
+		Order order = orderRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("주문 불러오기 실패: 아이디를 찾을 수 없음.");
+		});
 
 		model.addAttribute("orderItems", orderItemList);
 		model.addAttribute("order", order);
@@ -83,7 +87,9 @@ public class OrderController {
 	@GetMapping("/seller/order/{id}")
 	public String sellerOrderDetailForm(Model model, @PathVariable int id) {
 		List<OrderItem> orderItemList = orderService.주문상품불러오기(id);
-		Order order = orderRepository.findById(id).get();
+		Order order = orderRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("주문 불러오기 실패: 아이디를 찾을 수 없음.");
+		});
 
 		model.addAttribute("orderItems", orderItemList);
 		model.addAttribute("order", order);

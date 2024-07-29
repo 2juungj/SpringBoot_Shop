@@ -140,7 +140,9 @@ public class OrderService {
 		String tel = telNode.asText();
 
 		User user = principal.getUser();
-		Item item = itemRepository.findById(itemId).get(); // 구매 진행 아이템 호출
+		Item item = itemRepository.findById(itemId).orElseThrow(() -> {
+			return new IllegalArgumentException("상품 불러오기 실패: 아이디를 찾을 수 없음."); // 구매 진행 아이템 호출
+		});
 
 		if (item.getStock() < itemCount) { // 주문 진행 전 다시 한번 재고 확인
 			System.out.println("상품의 재고가 부족합니다.");
@@ -207,7 +209,9 @@ public class OrderService {
 	
 	@Transactional
 	public void 주문취소요청(Order order) {
-		Order userOrder = orderRepository.findById(order.getId()).get();
+		Order userOrder = orderRepository.findById(order.getId()).orElseThrow(() -> {
+			return new IllegalArgumentException("주문 불러오기 실패: 아이디를 찾을 수 없음.");
+		});
 		
 		// order의 주문취소사유와 취소현황 수정
 		userOrder.setCancelText(order.getCancelText());
@@ -216,7 +220,9 @@ public class OrderService {
 	
 	@Transactional
 	public void 주문취소(Order order) {
-		Order userOrder = orderRepository.findById(order.getId()).get();
+		Order userOrder = orderRepository.findById(order.getId()).orElseThrow(() -> {
+			return new IllegalArgumentException("주문 불러오기 실패: 아이디를 찾을 수 없음.");
+		});
 		
 		// order의 주문취소현황을 주문취소로 수정
 		userOrder.setCancel(2);

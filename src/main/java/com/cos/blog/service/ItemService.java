@@ -25,12 +25,16 @@ public class ItemService {
 	
 	@Transactional(readOnly = true)
 	public Item 상품불러오기(int id) {
-		return itemRepository.findById(id).get();
+		return itemRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("상품 불러오기 실패: 아이디를 찾을 수 없음.");
+		});
 	}
 	
 	@Transactional
 	public void 상품수정(Item item, int id) {
-		Item updateItem = itemRepository.findById(id).get();
+		Item updateItem = itemRepository.findById(id).orElseThrow(() -> {
+			return new IllegalArgumentException("상품 불러오기 실패: 아이디를 찾을 수 없음.");
+		});
 		updateItem.setItemName(item.getItemName());
 		updateItem.setItemText(item.getItemText());
 		updateItem.setPrice(item.getPrice());
