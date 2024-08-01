@@ -1,16 +1,16 @@
 ## SpringBoot_Shop
 스프링부트를 통해 구현한 쇼핑몰
-
+<br>
 ### 개발기간
 24.05.17 - 24.07.13
-
+<br>
 ### 개발환경
 - JAVA 17 (with JS, JSP)
 - Tool: STS4(Eclipse)
 - Framework: SpringBoot (3.x)
 - DB: MySQL
 - ORM: JPA
-
+<br>
 ### 주요기능
 **회원가입 및 로그인**
 - Spring Security
@@ -42,7 +42,7 @@
 **메인페이지**
 - 공지사항
 - 최신상품
-
+<br>
 ### 시연영상
 https://youtu.be/v9pWr2gShUg
 
