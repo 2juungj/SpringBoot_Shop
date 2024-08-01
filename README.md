@@ -14,7 +14,7 @@
 - Framework: SpringBoot (3.x)
 - DB: MySQL
 - ORM: JPA
-- 
+
 <br>
 
 ### 주요기능
@@ -48,7 +48,7 @@
 **메인페이지**
 - 공지사항
 - 최신상품
-- 
+
 <br>
 
 ### 시연영상
